@@ -150,8 +150,7 @@ func (h *Handler) ListUnits(c *gin.Context) {
 	var units []models.Unit
 	q := h.DB.Preload("Site").Order("id desc")
 	if siteID := c.Query("siteId"); siteID != "" {
-		// 错写成按探方主键筛（错误）
-		q = q.Where("id = ?", siteID)
+		q = q.Where("site_id = ?", siteID)
 	}
 	if err := q.Find(&units).Error; err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
