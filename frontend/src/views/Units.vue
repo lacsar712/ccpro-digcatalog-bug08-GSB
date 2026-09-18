@@ -109,7 +109,7 @@ async function load() {
   error.value = ''
   try {
     const params = {}
-    if (filterSiteId.value) params.site_id = filterSiteId.value
+    if (filterSiteId.value) params.siteId = filterSiteId.value
     const { data } = await api.get('/units', { params })
     list.value = data
   } catch (e) {
